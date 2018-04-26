@@ -29,31 +29,37 @@ def move_right(pos,matrix):
     temp_matrix = matrix[:]
     temp = generate_matrix_state([pos[0],pos[1]],[pos[0],pos[1]+2],[pos[0],pos[1]+4],temp_matrix)
     print_matrix(temp)
+    return temp
 
 def move_left(pos,matrix):
     temp_matrix = matrix[:]
     temp = generate_matrix_state([pos[0],pos[1]],[pos[0],pos[1]-2],[pos[0],pos[1]-4],temp_matrix)
     print_matrix(temp)
+    return temp
 
 def diagonal_up_right(pos,matrix):
     temp_matrix = matrix[:]
     temp = generate_matrix_state([pos[0],pos[1]],[pos[0]-1,pos[1]+1],[pos[0]-2,pos[1]+2],temp_matrix)
     print_matrix(temp)
+    return temp
 
 def diagonal_up_left(pos,matrix):
     temp_matrix = matrix[:]
     temp = generate_matrix_state([pos[0],pos[1]],[pos[0]-1,pos[1]-1],[pos[0]-2,pos[1]-2],temp_matrix)
     print_matrix(temp)
+    return temp
 
 def diagonal_down_right(pos,matrix):
     temp_matrix = matrix[:]
     temp = generate_matrix_state([pos[0],pos[1]],[pos[0]+1,pos[1]+1],[pos[0]+2,pos[1]+2],temp_matrix)
     print_matrix(temp)
+    return temp
 
 def diagonal_down_left(pos,matrix):
     temp_matrix = matrix[:]
     temp = generate_matrix_state([pos[0],pos[1]],[pos[0]+1,pos[1]-1],[pos[0]+2,pos[1]-2],temp_matrix)
     print_matrix(temp)
+    return temp
 
 def copiar(matrix):
     copia = []
@@ -62,19 +68,31 @@ def copiar(matrix):
         copia.append(aux)
     return copia
 
+def add_state(resp,list_states):
+    if(resp!=None):
+        list_states.append(resp)
+
 def get_state_for_pos(pos,matrix):
+    list_states = []
     temp = copiar(matrix)
-    move_right(pos,temp)
+    resp = move_right(pos,temp)
+    add_state(resp,list_states)
     temp = copiar(matrix)
-    move_right(pos,temp)
+    resp = move_right(pos,temp)
+    add_state(resp,list_states)
     temp = copiar(matrix)
-    diagonal_up_right(pos,temp)
+    resp = diagonal_up_right(pos,temp)
+    add_state(resp,list_states)
     temp = copiar(matrix)
-    diagonal_up_left(pos,temp)
+    resp = diagonal_up_left(pos,temp)
+    add_state(resp,list_states)
     temp = copiar(matrix)
-    diagonal_down_right(pos,temp)
+    resp = diagonal_down_right(pos,temp)
+    add_state(resp,list_states)
     temp = copiar(matrix)
-    diagonal_down_left(pos,temp)
+    resp = diagonal_down_left(pos,temp)
+    add_state(resp,list_states)
+    return list_states
 
 
 
@@ -91,9 +109,19 @@ def generate_states(matrix):
     temp = matrix[:]
     list_pos = get_pos_play(matrix)
     for i in list_pos:
-        get_state_for_pos(i,matrix)
+        list_states = get_state_for_pos(i,matrix)
+        print(list_states)
+        for j in list_states:
+            if j != None:
+                print("############## Generate Pos #################\n")
+                new_pos = get_pos_play(j)
+                print(new_pos)
+                for k in new_pos:
+                    get_state_for_pos(k,j)
+    
+
         #generate_states(matrix)
-    print(list_pos)
+    #print(list_pos)
 
 senku_matrix = [
     [-1,-1,-1,-1, 1,-1,-1,-1,-1],
