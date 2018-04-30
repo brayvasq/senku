@@ -56,7 +56,7 @@ def move_right(pos,matrix):
     """
     temp_matrix = matrix[:]
     temp = generate_matrix_state([pos[0],pos[1]],[pos[0],pos[1]+2],[pos[0],pos[1]+4],temp_matrix)
-    print_matrix(temp)
+    #print_matrix(temp)
     return temp
 
 def move_left(pos,matrix):
@@ -67,7 +67,7 @@ def move_left(pos,matrix):
     """
     temp_matrix = matrix[:]
     temp = generate_matrix_state([pos[0],pos[1]],[pos[0],pos[1]-2],[pos[0],pos[1]-4],temp_matrix)
-    print_matrix(temp)
+    #print_matrix(temp)
     return temp
 
 def diagonal_up_right(pos,matrix):
@@ -78,7 +78,7 @@ def diagonal_up_right(pos,matrix):
     """
     temp_matrix = matrix[:]
     temp = generate_matrix_state([pos[0],pos[1]],[pos[0]-1,pos[1]+1],[pos[0]-2,pos[1]+2],temp_matrix)
-    print_matrix(temp)
+    #print_matrix(temp)
     return temp
 
 def diagonal_up_left(pos,matrix):
@@ -89,7 +89,7 @@ def diagonal_up_left(pos,matrix):
     """
     temp_matrix = matrix[:]
     temp = generate_matrix_state([pos[0],pos[1]],[pos[0]-1,pos[1]-1],[pos[0]-2,pos[1]-2],temp_matrix)
-    print_matrix(temp)
+    #print_matrix(temp)
     return temp
 
 def diagonal_down_right(pos,matrix):
@@ -100,7 +100,7 @@ def diagonal_down_right(pos,matrix):
     """
     temp_matrix = matrix[:]
     temp = generate_matrix_state([pos[0],pos[1]],[pos[0]+1,pos[1]+1],[pos[0]+2,pos[1]+2],temp_matrix)
-    print_matrix(temp)
+    #print_matrix(temp)
     return temp
 
 def diagonal_down_left(pos,matrix):
@@ -111,7 +111,7 @@ def diagonal_down_left(pos,matrix):
     """
     temp_matrix = matrix[:]
     temp = generate_matrix_state([pos[0],pos[1]],[pos[0]+1,pos[1]-1],[pos[0]+2,pos[1]-2],temp_matrix)
-    print_matrix(temp)
+    #print_matrix(temp)
     return temp
 
 def copiar(matrix):
@@ -144,7 +144,7 @@ def get_state_for_pos(pos,matrix):
     resp = move_right(pos,temp)
     add_state(resp,list_states)
     temp = copiar(matrix)
-    resp = move_right(pos,temp)
+    resp = move_left(pos,temp)
     add_state(resp,list_states)
     temp = copiar(matrix)
     resp = diagonal_up_right(pos,temp)
@@ -196,8 +196,11 @@ def generate_states(matrix):
     print("Generando !!")
     temp = matrix[:]
     list_pos = get_pos_play(matrix)
+    print(list_pos)
     for i in list_pos:
         list_states = get_state_for_pos(i,matrix)
+        for w in list_states:
+        	print_matrix(w)
         for j in list_states:
             if(verify_win(j)):
                 break
@@ -213,9 +216,9 @@ def generate_states(matrix):
 senku_matrix = [
     [-1,-1,-1,-1, 1,-1,-1,-1,-1],
     [-1,-1,-1, 1,-1, 1,-1,-1,-1],
-    [-1,-1, 1,-1, 0,-1, 1,-1,-1],
+    [-1,-1, 1,-1, 1,-1, 1,-1,-1],
     [-1, 1,-1, 1,-1, 1,-1, 1,-1],
-    [ 1,-1, 1,-1, 1,-1, 1,-1, 1],
+    [ 0,-1, 1,-1, 1,-1, 1,-1, 1],
 ]
 
 list_states = []
