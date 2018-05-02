@@ -14,6 +14,7 @@ class Node:
             :return: nothing
         """
         self.step   = 0
+        self.parent_id = 0
         self.name   = "Node : "+str(self.step)
         self.matrix = matrix
         self.parent = None

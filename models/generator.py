@@ -165,29 +165,34 @@ class Generator:
         state = Node(temp)
         
         frontera = [state]
-        visitados = []
-        hijos = {}
-
+        visitados = {}
+        
         while(buscar and len(frontera)>0):
             pasos += 1
-            print(pasos)
+            #print(pasos)
             nodo = frontera[0]
             nodo.step = pasos
             nodo.name = "Nodo : "+str(nodo.step)
             frontera.pop(0)
-            nodo.print_matrix()
-            if not visitados.__contains__(nodo):
-                visitados.append(nodo)
-            vecinos = self.obtener_vecinos(nodo,visitados,frontera)
+            #nodo.print_matrix()
+            if not list(visitados.values()).__contains__(nodo):
+                visitados[nodo.step] = nodo
+            vecinos = self.obtener_vecinos(nodo,list(visitados.values()),frontera)
             #print(vecinos)
-            hijos[nodo.name] = vecinos
+            for i in vecinos:
+                i.parent_id = nodo.step
 
-            if(self.find_win(vecinos)):
-                print("Termino")
+            if(self.verify_win(nodo.matrix)):
+                #print("Termino")
                 buscar = False
             else:
-                print("Buscando")
+                pass
+                #print("Buscando")
+                #hijos[nodo.name] = vecinos
 
             for i in vecinos:
                 frontera.append(i) 
+
+        return [nodo,visitados]
         
+    
