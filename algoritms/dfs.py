@@ -2,13 +2,13 @@ from models.generator import Generator
 from models.node import Node
 from algoritms.algorithm import Algorithm
 
-class BFS(Algorithm):
+class DFS(Algorithm):
 
     def __init__(self,senku_matrix):
         Algorithm.__init__(self,senku_matrix)
     
     def run(self):
-        print("Generando BFS")
+        print("Generando DFS")
         buscar = True
         pasos = 0
 
@@ -21,10 +21,10 @@ class BFS(Algorithm):
         while(buscar and len(frontera)>0):
             pasos += 1
             #print(pasos)
-            nodo = frontera[0]
+            nodo = frontera[len(frontera)-1]
             nodo.step = pasos
             nodo.name = "Nodo : "+str(nodo.step)
-            frontera.pop(0)
+            frontera.pop(len(frontera)-1)
             #nodo.print_matrix()
             if not list(visitados.values()).__contains__(nodo):
                 visitados[nodo.step] = nodo
