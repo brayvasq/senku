@@ -1,4 +1,4 @@
-from models.generator import Generator
+from algoritms.bfs import BFS
 
 if __name__ == "__main__":
     senku_matrix = [
@@ -9,23 +9,7 @@ if __name__ == "__main__":
         [ 0,-1, 1,-1, 1,-1, 1,-1, 1],
     ]
 
-    g = Generator("Generador",senku_matrix)
-    lista = g.BFS(senku_matrix)
+    g = BFS(senku_matrix)
+    g.run()
 
-    valor = lista[0]
-    visitados = lista[1]
-
-    parent = valor.step
-    camino = []
-    print(type(visitados))
-    #visitados[3000].print_matrix()
-    while(parent > 1):
-        nodo = visitados[parent]
-        camino.append(nodo)
-        parent = nodo.parent_id
-    
-    camino = camino[::-1]
-    print(len(camino))
-    for i in camino:
-        i.print_matrix()
         
