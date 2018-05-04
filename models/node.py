@@ -17,7 +17,9 @@ class Node:
         self.parent_id = 0
         self.name   = "Node : "+str(self.step)
         self.matrix = matrix
+        self.level = self.count_level()
         self.parent = None
+        self.heuristic = 0
     
     def print_info(self):
         """
@@ -48,6 +50,22 @@ class Node:
                         string_matrix += "   "
                 string_matrix += "\n"
             print(string_matrix)
+
+    def count_peg(self):
+        count = 0
+        for i in range(0, len(self.matrix)):
+            for j in range(0, len(self.matrix[i])):
+                if self.matrix[i][j] == 1:
+                    count+=1
+        return count
+
+    def count_level(self):
+        count = 0
+        for i in range(0, len(self.matrix)):
+            for j in range(0, len(self.matrix[i])):
+                if self.matrix[i][j] == 0:
+                    count+=1
+        return count-1
 
     def __str__(self):
         return self.name

@@ -45,6 +45,7 @@ class DFS(Algorithm):
                 frontera.append(i) 
 
         #return [nodo,visitados]
+        print(pasos)
         return self.path([nodo,visitados])
     
     def path(self,lista):

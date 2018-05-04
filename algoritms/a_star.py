@@ -2,13 +2,13 @@ from models.generator import Generator
 from models.node import Node
 from algoritms.algorithm import Algorithm
 
-class BFS(Algorithm):
+class AStar(Algorithm):
 
     def __init__(self,senku_matrix):
         Algorithm.__init__(self,senku_matrix)
     
     def run(self):
-        print("Generando BFS")
+        print("Generando A Star")
         buscar = True
         pasos = 0
 
@@ -20,7 +20,7 @@ class BFS(Algorithm):
         
         while(buscar and len(frontera)>0):
             pasos += 1
-            #print(pasos)
+            print(pasos)
             nodo = frontera[0]
             nodo.step = pasos
             nodo.name = "Nodo : "+str(nodo.step)
@@ -42,11 +42,18 @@ class BFS(Algorithm):
                 #hijos[nodo.name] = vecinos
 
             for i in vecinos:
+                n = i.count_peg()
+                vecinos = self.obtener_vecinos(i, list(visitados.values()), frontera)
+                i.heuristic = n-((1/n)*len(vecinos))
                 frontera.append(i) 
+            frontera = self.sort_by_heuristic(frontera)
 
         #return [nodo,visitados]
         print(pasos)
         return self.path([nodo,visitados])
+
+    def sort_by_heuristic(self, frontera):
+        return sorted(frontera, key=lambda nodo:nodo.heuristic)
     
     def path(self,lista):
         valor = lista[0]
