@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'game.apps.GameConfig', # activate the new app
     'rest_framework',
+    'frontend', # enable the frontend app
 ]
 
 ## Disabling browseable API in production
