@@ -27,4 +27,7 @@ python manage.py makemigrations game
 
 ## Execute migraitons
 python manage.py migrate
+
+## Run server
+python manage.py runserver
 ```
