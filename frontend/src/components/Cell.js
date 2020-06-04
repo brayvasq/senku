@@ -7,8 +7,9 @@ class Cell extends Component {
     }
 
     render() {
+        var handler = this.props.handler;
         return (
-            <button className="cell">
+            <button className="cell" onClick = {() => handler(this.props.num)}>
                 {this.props.num}
             </button>
         )
