@@ -4,9 +4,6 @@
 | -------- | -------------- |
 | Python   | Python 3.8.2   |
 
-
-https://www.valentinog.com/blog/drf/#django-rest-with-react-creating-a-django-model
-
 ## Creating project
 ```bash
 ## Installing dependencies
