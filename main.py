@@ -1,26 +1,10 @@
-from algoritms.bfs import BFS
-from algoritms.dfs import DFS
-from algoritms.greedy import Greedy
-from algoritms.a_star import AStar
+#from models.node import Node
+from src.game import Game
 
 if __name__ == "__main__":
-    senku_matrix = [
-        [-1,-1,-1,-1, 1,-1,-1,-1,-1],
-        [-1,-1,-1, 1,-1, 1,-1,-1,-1],
-        [-1,-1, 1,-1, 1,-1, 1,-1,-1],
-        [-1, 1,-1, 1,-1, 1,-1, 1,-1],
-        [ 0,-1, 1,-1, 1,-1, 1,-1, 1],
-    ]
+    print("Hello Senku Solver!!")
 
-    #g = BFS(senku_matrix)
-    #g.run()
-    print("-----------------------------------------")
-    #g = DFS(senku_matrix)
-    #g.run()
-    print("-----------------------------------------")
-    #g = Greedy(senku_matrix)
-    #g.run()
-    print("-----------------------------------------")
-    g = AStar(senku_matrix)
-    g.run()
-     
+
+    game = Game(5)
+    game.process()
+
