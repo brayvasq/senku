@@ -6,29 +6,28 @@ from src.utils.greedy import Greedy
 from src.utils.a_star import AStar
 
 class Game:
-    def __init__(self, option = 1):
-        self.option = option
+    def __init__(self):
         self.root = self.__base_node()
 
-    def process(self, option):
-        if self.option == 1:
+    def process(self, option = "bfs"):
+        if option == "user":
             self.user_game()
-        elif self.option == 2:
+        elif option == "bfs":
             print("BFS Algorithm: Breadth First Search")
             BFS(self.root).run()
-        elif self.option == 3:
+        elif option == "dfs":
             print("DFS Algorithm: Depth First Search")
             DFS(self.root).run()
-        elif self.option == 4:
+        elif option == "greedy":
             print("Greedy Algorithm")
             Greedy(self.root).run()
-        elif self.option == 5:
+        elif option == "astar":
             print("A*: A Star")
             AStar(self.root).run()
 
     # TODO: user game interaction
     def user_game(self):
-        pass
+        print("Error: Not implemented")
 
     def __base_node(self):
         senku = [

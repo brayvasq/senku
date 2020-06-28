@@ -1,10 +1,5 @@
-#from models.node import Node
-from src.game import Game
+import sys
+from src.commands import Commands
 
 if __name__ == "__main__":
-    print("Hello Senku Solver!!")
-
-
-    game = Game(5)
-    game.process()
-
+    Commands(sys.argv).process()
