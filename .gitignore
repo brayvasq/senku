@@ -73,6 +73,16 @@ coverage.xml
 
 # Translations
 *.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+
+# Flask stuff:
+instance/
+.webassets-cache
 
 # Scrapy stuff:
 .scrapy
@@ -98,6 +108,15 @@ celerybeat-schedule
 
 # SageMath parsed files
 *.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
 
 # Spyder project settings
 .spyderproject
@@ -286,4 +305,5 @@ thumb
 sketch
 
 frontend/static/frontend/
+old/
 # End of https://www.gitignore.io/api/node,react,django,python

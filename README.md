@@ -24,6 +24,7 @@ python manage.py migrate
 
 ## Compile frontend
 ## cd frontend/
+npm install
 npm run dev
 
 ## Run server
