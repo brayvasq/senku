@@ -31,6 +31,16 @@ npm run dev
 python manage.py runserver
 ```
 
+## TODO
+- [ ] Document code.
+- [ ] Document algorithms in `NOTES.md`.
+- [ ] Document senku game theory in `NOTES.md`.
+- [ ] Add unit tests.
+- [ ] Improve UI (Use a Grid system layout)
+- [ ] Show more info on Screen. (Statistics, History).
+- [ ] Add other versions of senku.
+
+
 ## References
 
 | Type          | Link                                                                                |
