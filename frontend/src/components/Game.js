@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Game.css';
 import Board from './Board';
+import axios from 'axios';
 
 /**
  * Component that will show boards games
@@ -14,49 +15,60 @@ class Game extends Component {
   constructor(props){
     super(props);
 
+    this.initial = [
+      ["_","_","_","_","1","_","_","_","_"],
+      ["_","_","_","1","_","1","_","_","_"],
+      ["_","_","1","_","1","_","1","_","_"],
+      ["_","1","_","1","_","1","_","1","_"],
+      ["0","_","1","_","1","_","1","_","1"]
+    ]
+
     this.state = {
+      algorithm: 'bfs',
       boards: []
     }
 
     this.getBoards = this.getBoards.bind(this);
+    this.handleChangeInput = this.handleChangeInput.bind(this);
+  }
+
+  handleChangeInput(event) {
+    this.setState({algorithm: event.target.value})
   }
 
   /**
    * Gets the solution from backend service
    */
   getBoards() {
-    const boards = [
-        [
-          ["_","_","_","_","1","_","_","_","_"],
-          ["_","_","_","1","_","1","_","_","_"],
-          ["_","_","1","_","1","_","1","_","_"],
-          ["_","1","_","1","_","1","_","1","_"],
-          ["0","_","1","_","1","_","1","_","1"]
-        ]
-    ]
+    const data = {
+      algorithm: this.state.algorithm,
+      initial: this.initial
+    }
 
-    this.setState({ boards: boards })
+    axios({
+      method: 'post',
+      url: 'http://localhost:8000/api/game/',
+      data: data
+    }).then(resp => {
+      console.log(resp)
+      this.setState({ boards: resp["data"] })
+    })
   }
 
   render(){
-    const boards = [
-      [
-        ["_","_","_","_","1","_","_","_","_"],
-        ["_","_","_","1","_","1","_","_","_"],
-        ["_","_","1","_","1","_","1","_","_"],
-        ["_","1","_","1","_","1","_","1","_"],
-        ["0","_","1","_","1","_","1","_","1"]
-      ]
-    ]
-
     return(
       <div>
         <div className="boards">
-          <Board value={boards}></Board>
-          <Board value={boards}></Board>
+          <Board value={this.initial}></Board>
+          {this.state.boards.map((board) => {
+            return(
+              <Board value={board}></Board>
+            );
+          })}
         </div>
         <div className="info">
-          Info!
+          <input className="input is-primary" type="text" placeholder="Primary input" value={this.state.algorithm} onChange={this.handleChangeInput}/>
+          <input type="submit" value="Run" onClick={this.getBoards}/>
         </div>
       </div>
     );
