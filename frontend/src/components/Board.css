@@ -1,0 +1,12 @@
+.item
+{
+    float: left;
+}
+
+.row {
+    display: table;
+}
+
+.board{
+    margin-top: 5%;
+}

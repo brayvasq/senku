@@ -10,8 +10,8 @@ class Square extends Component
 
     render(){
         return(
-            <button className="square">
-                {this.props.value}
+            <button className={this.props.value === '_' ? 'empty-square' : 'value-square'}>
+                {this.props.value === '_' ? '' : this.props.value}
             </button>
         );
     }
