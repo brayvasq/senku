@@ -1,0 +1,16 @@
+.value-square
+{
+    border: 1px solid black;
+    width: 25px;
+    height: 25px;
+    background: transparent;
+    font-family: cursive;
+}
+
+.empty-square{
+    background: transparent;
+    border: none;
+    width: 25px;
+    height: 25px;
+}
+
