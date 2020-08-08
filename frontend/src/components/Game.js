@@ -25,7 +25,10 @@ class Game extends Component {
 
     this.state = {
       algorithm: 'bfs',
-      boards: []
+      boards: [],
+      run: 'Run',
+      steps: 0,
+      solutionSteps: 0
     }
 
     this.getBoards = this.getBoards.bind(this);
@@ -40,6 +43,8 @@ class Game extends Component {
    * Gets the solution from backend service
    */
   getBoards() {
+    this.setState({ run: "Processing...", boards: [], steps: 0, solutionSteps: 0 })
+
     const data = {
       algorithm: this.state.algorithm,
       initial: this.initial
@@ -50,14 +55,22 @@ class Game extends Component {
       url: 'http://localhost:8000/api/game/',
       data: data
     }).then(resp => {
-      console.log(resp)
-      this.setState({ boards: resp["data"] })
+      // console.log(resp)
+      this.setState(
+        { 
+          boards: resp["data"]["result"], 
+          run: "Run",
+          steps: resp["data"]["steps"],
+          solutionSteps: resp["data"]["solution_steps"]
+        }
+      );
     })
   }
 
   render(){
     return(
-      <div>
+      <div className="container">
+        <div className="header">Senku</div>
         <div className="boards">
           <Board value={this.initial}></Board>
           {this.state.boards.map((board) => {
@@ -67,8 +80,31 @@ class Game extends Component {
           })}
         </div>
         <div className="info">
-          <input className="input is-primary" type="text" placeholder="Primary input" value={this.state.algorithm} onChange={this.handleChangeInput}/>
-          <input type="submit" value="Run" onClick={this.getBoards}/>
+          <div>
+            <select onChange={this.handleChangeInput}>
+                <option value="bfs">BFS - Breadth First Search</option>
+                <option value="dfs">DFS - Depth First Search</option>
+                <option value="greedy">Greedy</option>
+                <option value="a_star">A Star</option>
+            </select>
+          </div>
+          <div>
+            <input type="submit" value={this.state.run} onClick={this.getBoards}/>
+          </div>
+          <div>
+            <table>
+              <tbody>
+                <tr>
+                  <td className="title">Steps:</td>
+                  <td className="value">{this.state.steps}</td>
+                </tr>
+                <tr>
+                  <td className="title">Solution steps:</td>
+                  <td className="value">{this.state.solutionSteps}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     );

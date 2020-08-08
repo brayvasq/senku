@@ -24,15 +24,23 @@ class GameListCreate(generics.ListCreateAPIView):
         senku = request.data["initial"]
 
         result = []
+        steps = 0
+        solution_steps = 0
         if algorithm == 'bfs':
-            result = BFS(Node(senku)).run()
+            result, steps, solution_steps = BFS(Node(senku)).run()
         elif algorithm == 'dfs':
-            result = DFS(Node(senku)).run()
+            result, steps, solution_steps = DFS(Node(senku)).run()
         elif algorithm == 'greedy':
-            result = Greedy(Node(senku)).run()
+            result, steps, solution_steps = Greedy(Node(senku)).run()
         elif algorithm == 'a_star':
-            result = AStar(Node(senku)).run()
+            result, steps, solution_steps = AStar(Node(senku)).run()
 
         result = list(map(lambda x: x.matrix, result))
 
-        return Response(data=result, status=status.HTTP_201_CREATED)
+        data = {
+            "result": result,
+            "steps": steps,
+            "solution_steps": solution_steps
+        }
+
+        return Response(data=data, status=status.HTTP_201_CREATED)
