@@ -1,16 +1,18 @@
 .value-square
 {
-    border: 1px solid black;
-    width: 25px;
-    height: 25px;
+    border: 2px solid black;
+    width: 45px;
+    height: 45px;
     background: transparent;
     font-family: cursive;
+    border-radius: 50px;
 }
 
 .empty-square{
     background: transparent;
     border: none;
-    width: 25px;
-    height: 25px;
+    width: 45px;
+    height: 45px;
+    outline: none;
 }
 

@@ -45,13 +45,13 @@ class AStar(Algorithm):
             frontier = self.sort_by_heuristic(frontier)
         
         print(f"Steps: {steps}")
-        return self.path(node, visited)
+        return self.path(node, visited, steps)
 
     def sort_by_heuristic(self, frontier):
         return sorted(frontier, key=lambda node: node.heuristic)
 
     # TODO: Move to the parent class
-    def path(self, node, visited):
+    def path(self, node, visited, steps):
         parent = node.step
         track = []
         print(type(visited))
@@ -63,13 +63,14 @@ class AStar(Algorithm):
 
         # Reverse the list
         track = track[::-1]
-        print(len(track))
+        solution_steps = len(track)
+        print(solution_steps)
 
         print(node)
         for i in track:
             print(i)
 
-        return track
+        return track, steps, solution_steps
 
 
 
