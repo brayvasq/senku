@@ -1,6 +1,69 @@
 /*TODO: Use grid layouts*/
-.boards, .info
-{
-    width: 50%;
-    float: left;
+body {
+    margin: auto;
+    font-family: cursive;
+}
+
+.container {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 40px 1fr;
+    grid-template-areas:
+    "header header"
+    "boards info";
+    overflow: hidden;
+}
+
+.header {
+    padding-top: 5px;
+    grid-area: header;
+    background-color: whitesmoke;
+    box-shadow: antiquewhite;
+    font-style: bold;
+    font-size: 18px;
+    text-align: center;
+}
+
+.boards {
+    grid-area: boards;
+    padding-bottom: 10%;
+    padding-top: 10%;
+    border-right: 2px solid;
+    overflow-y: auto;
+}
+
+.info {
+    grid-area: info;
+    padding: 10%;
+    margin: 0 auto;
+}
+
+.info select {
+    outline: none;
+    border: none;
+    background: transparent;
+    border-bottom: 2px solid;
+    margin: 10% 0;
+}
+
+.info input[type=submit] {
+    padding: 5% 20%;
+    outline: none;
+    border: none;
+    background: transparent;
+    font-family: cursive;
+    border: 2px solid;
+    width: -webkit-fill-available;
+    cursor: pointer;
+}
+
+.info input[type=submit]:hover{
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+.info .title {
+    font-weight: bolder;
 }

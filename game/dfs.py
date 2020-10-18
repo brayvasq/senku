@@ -40,10 +40,10 @@ class DFS(Algorithm):
                 frontier.append(i)
 
         print(steps)
-        return self.path(node, visited)
+        return self.path(node, visited, steps)
 
     # TODO: Move to the parent class
-    def path(self, node, visited):
+    def path(self, node, visited, steps):
         parent = node.step
         track = []
 
@@ -53,10 +53,12 @@ class DFS(Algorithm):
             parent = temp.parent_id
             
         track = track[::-1]
-        print(len(track))
+        solution_steps = len(track)
+        print(solution_steps)
 
         print(node)
         for i in track:
             print(i)
 
-        return track
+        return track, steps, solution_steps
+

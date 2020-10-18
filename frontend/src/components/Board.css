@@ -4,9 +4,11 @@
 }
 
 .row {
-    display: table;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.board{
-    margin-top: 5%;
+.board {
+    padding-bottom: 10%;
 }
