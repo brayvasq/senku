@@ -5,16 +5,55 @@ class Node:
     ...
     Attributes
     ----------
+    step : int
+        The step or node geneared
+    parent_id : int
+        The Node parent id
+    name : str
+        Node name
+    matrix : list
+        The matrix representation.
+    level : int
+        The level in senku, is equivalent to the number of movements
+    parent : Node
+        The node parent
+    heuristic : int
+        A value that tell us how near is the node to a solution
+    
+    Methods
+    -------
+    count_pegs : int
+        Counts the number of filled items.
 
+    count_level : int
+        Counts the number of empty items.
+
+    positions_to_play : list
+        Look for possible movements
+
+    verify_winner : bool
+        Check if the Node is a solution   
+
+    tiles : str
+        Returns the string representation for a row
+
+    
     """
+
     def __init__(self, matrix):
-        self.step = 0 # The step or node geneared
-        self.parent_id = 0 # The Node parent id
-        self.name = f'Node: {str(self.step)}!' # Node name
-        self.matrix = matrix # The matrix representation.
-        self.level = 0 # The level in senku, is equivalent to the number of movements
-        self.parent = None # The node parent
-        self.heuristic = 0 # A value that tell us how near is the node to a solution
+        """
+        Parameters
+        ----------
+        matrix : list
+            The matrix representation.
+        """
+        self.step = 0
+        self.parent_id = 0
+        self.name = f'Node: {str(self.step)}!'
+        self.matrix = matrix
+        self.level = 0
+        self.parent = None
+        self.heuristic = 0
 
     def count_pegs(self):
         """
@@ -54,7 +93,7 @@ class Node:
 
     def positions_to_play(self):
         """
-        Look for target positions an put them into a list
+        Look for target positions and put them into a list
         
         Return 
         ------
